@@ -1,0 +1,23 @@
+[project]
+name = "ledgerdata"
+version = "0.1.0.dev0"
+description = "Python client for LEDGER database"
+readme = "README.md"
+authors = [
+    { name = "Luke Gloege", email = "lukegloege@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "pandas>=3.0.6",
+    "psycopg>=3.3.6",
+    "pydantic>=2.14.1",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+ledgerdata = "ledgerdata:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
