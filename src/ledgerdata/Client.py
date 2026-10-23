@@ -38,7 +38,7 @@ class Client(Base):
         Returns:
             DataFrame: data of all actors
         """
-        return pd.DataFrame(Actors().get_all_actors())
+        return pd.DataFrame(Actors(env=self.env, version=self.version).get_all_actors())
 
     def parts_of_actor(
         self, actor_id: str, part_type: Optional[str] = None, *args, **kwargs
@@ -54,7 +54,7 @@ class Client(Base):
         Returns:
             DataFrame: dataframe of actors parts
         """
-        return pd.DataFrame(Actors().parts_of_actor(actor_id=actor_id, type=part_type))
+        return pd.DataFrame(Actors(env=self.env, version=self.version).parts_of_actor(actor_id=actor_id, type=part_type))
     
     def gwp(
         self,
@@ -68,7 +68,7 @@ class Client(Base):
         Returns:
             DataFrame: data for GWPs
         """
-        return pd.DataFrame(GWP().gwp(assessment_report=assessment_report))
+        return pd.DataFrame(GWP(env=self.env, version=self.version).gwp(assessment_report=assessment_report))
 
     def datasource(
         self,
@@ -82,7 +82,7 @@ class Client(Base):
         Returns:
             DataFrame: data for datasources
         """
-        return pd.DataFrame(Datasource().datasource(datasource_id=datasource_id))
+        return pd.DataFrame(Datasource(env=self.env, version=self.version).datasource(datasource_id=datasource_id))
 
     def sector(
         self
@@ -92,7 +92,7 @@ class Client(Base):
         Returns:
             DataFrame: data for sectors
         """
-        return pd.DataFrame(Sector().sector())
+        return pd.DataFrame(Sector(env=self.env, version=self.version).sector())
 
 
     def emissions(
@@ -107,7 +107,7 @@ class Client(Base):
         Returns:
             DataFrame: data for each emissions dataset
         """
-        return pd.DataFrame(Emissions().emissions(actor_id=actor_id))
+        return pd.DataFrame(Emissions(env=self.env, version=self.version).emissions(actor_id=actor_id))
 
     def emissions_raw(
         self,
@@ -121,7 +121,7 @@ class Client(Base):
         Returns:
             DataFrame: data for each emissions dataset
         """
-        return Emissions().emissions(actor_id=actor_id)
+        return Emissions(env=self.env, version=self.version).emissions(actor_id=actor_id)
 
     def targets(self, actor_id: str) -> pd.DataFrame:
         """retreive actor targets
@@ -132,7 +132,7 @@ class Client(Base):
         Returns:
             DataFrame: dataframe of targets
         """
-        return pd.DataFrame(Targets().targets(actor_id=actor_id))
+        return pd.DataFrame(Targets(env=self.env, version=self.version).targets(actor_id=actor_id))
 
     def population(self, actor_id: str) -> pd.DataFrame:
         """retreive actor population
@@ -144,7 +144,7 @@ class Client(Base):
         Returns:
             DataFrame: dataframe of population
         """
-        return pd.DataFrame(Population().population(actor_id=actor_id))
+        return pd.DataFrame(Population(env=self.env, version=self.version).population(actor_id=actor_id))
 
     def gdp(self, actor_id: str) -> pd.DataFrame:
         """retreive actor gdp
@@ -156,10 +156,10 @@ class Client(Base):
         Returns:
             DataFrame: dataframe of gdp
         """
-        return pd.DataFrame(GDP().fetch(actor_id=actor_id))
+        return pd.DataFrame(GDP(env=self.env, version=self.version).fetch(actor_id=actor_id))
 
     async def emissions_async(self, actor_id: str) -> pd.DataFrame:
-        data = await Emissions().emissions_async(actor_id=actor_id)
+        data = await Emissions(env=self.env, version=self.version).emissions_async(actor_id=actor_id)
         return pd.DataFrame(data)
 
     async def _emissions_with_sem(self, actor_id: str) -> pd.DataFrame:
