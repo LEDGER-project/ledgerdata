@@ -46,7 +46,7 @@ class Actors(Base):
         Returns:
             dict: A JSON response containing actor-part data.
         """
-        endpoint = f"/actors/{actor_id}/parts"
+        endpoint = f"/actor/{actor_id}/parts"
         url = f"{self.server}{endpoint}"
         headers = {"Accept": "application/json"}
         params = {"type": type} if type else {}
@@ -69,7 +69,7 @@ class Actors(Base):
         Returns:
             dict: A JSON response containing actor-part data.
         """
-        endpoint = f"/actors/{actor_id}/population"
+        endpoint = f"/actor/{actor_id}/population"
         url = f"{self.server}{endpoint}"
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
@@ -90,7 +90,7 @@ class Actors(Base):
         Returns:
             dict: A JSON response containing actor-part data.
         """
-        endpoint = f"/actors/{actor_id}/gdp"
+        endpoint = f"/actor/{actor_id}/gdp"
         url = f"{self.server}{endpoint}"
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
@@ -111,7 +111,7 @@ class Actors(Base):
         Returns:
             dict: A JSON response containing actor-part data.
         """
-        endpoint = f"/actors/{actor_id}/energy_consumption"
+        endpoint = f"/actor/{actor_id}/energy_consumption"
         url = f"{self.server}{endpoint}"
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
@@ -132,7 +132,7 @@ class Actors(Base):
         Returns:
             dict: A JSON response containing actor-part data.
         """
-        endpoint = f"/actors/{actor_id}/targets"
+        endpoint = f"/actor/{actor_id}/targets"
         url = f"{self.server}{endpoint}"
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
@@ -159,7 +159,7 @@ class Actors(Base):
             if ignore_warnings
             else warnings.simplefilter("default")
         )
-        endpoint = f"/actors/{actor_id}/emissions"
+        endpoint = f"/actor/{actor_id}/emissions"
         url = f"{self.server}{endpoint}"
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
