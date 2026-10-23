@@ -4,7 +4,7 @@ version = "0.1.0.dev0"
 description = "Python client for LEDGER database"
 readme = "README.md"
 authors = [
-    { name = "Luke Gloege", email = "lukegloege@gmail.com" }
+    { name = "Luke Gloege", email = "lucas.gloege@yale.edu" }
 ]
 requires-python = ">=3.12"
 dependencies = [
