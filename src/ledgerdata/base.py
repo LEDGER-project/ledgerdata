@@ -1,15 +1,18 @@
 from enum import Enum
-from pydantic.dataclasses import dataclass
+
 from pydantic import HttpUrl
+from pydantic.dataclasses import dataclass
+
 
 class Env(str, Enum):
     dev = "dev"
     prod = "prod"
 
+
 @dataclass
 class Base:
     version: str = "/api/v0"
-    env: Env = Env.prod  
+    env: Env = Env.prod
 
     def __post_init__(self):
         urls = {

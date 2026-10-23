@@ -1,17 +1,16 @@
-from pydantic.dataclasses import dataclass
-from pydantic import HttpUrl
-
-from .Base import Base
+import warnings
+from typing import ClassVar
 
 import pandas as pd
 import requests
-from typing import List, Union, Tuple, Optional, ClassVar
-import warnings
+from pydantic.dataclasses import dataclass
+
+from .base import Base
 
 
 @dataclass
 class ActorData(Base):
-    endpoint: ClassVar[str] 
+    endpoint: ClassVar[str]
 
     def fetch(
         self,
@@ -30,7 +29,6 @@ class ActorData(Base):
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
         return pd.DataFrame(response)
-
 
 
 @dataclass

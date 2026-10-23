@@ -1,13 +1,10 @@
-from pydantic.dataclasses import dataclass
-from pydantic import HttpUrl
-
-from .Base import Base
-
-import pandas as pd
-import requests
-from typing import List, Union, Tuple, Optional
 import warnings
+
 import httpx
+import requests
+from pydantic.dataclasses import dataclass
+
+from .base import Base
 
 
 @dataclass
@@ -23,7 +20,7 @@ class Actors(Base):
         Returns:
             dict: A JSON response containing actor data.
         """
-        endpoint = f"/actor"
+        endpoint = "/actor"
         url = f"{self.server}{endpoint}"
         headers = {"Accept": "application/json"}
         # Add query parameters as a dict
@@ -31,7 +28,7 @@ class Actors(Base):
         # data_list = response.get("data", None)
         return response
 
-    def parts_of_actor(self, actor_id=str, type: str = None, *args, **kwargs):
+    def parts_of_actor(self, actor_id=str, type: str | None = None, *args, **kwargs):
         """Retrieve parts (sub-actors) of a given actor.
 
         Sends a GET request to the `/parts_of/{actor_id}` endpoint and returns
@@ -54,7 +51,6 @@ class Actors(Base):
         # data_list = response.get("data", None)
         return response
 
-
     def population(self, actor_id=str, *args, **kwargs):
         """Retrieve actor population
 
@@ -75,7 +71,6 @@ class Actors(Base):
         response = requests.get(url, headers=headers).json()
         return response
 
-    
     def gdp(self, actor_id=str, *args, **kwargs):
         """Retrieve actor population
 
@@ -95,7 +90,6 @@ class Actors(Base):
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
         return response
-
 
     def energy_consumption(self, actor_id=str, *args, **kwargs):
         """Retrieve actor population
@@ -117,7 +111,6 @@ class Actors(Base):
         response = requests.get(url, headers=headers).json()
         return response
 
-
     def targets(self, actor_id=str, *args, **kwargs):
         """Retrieve actor population
 
@@ -137,8 +130,6 @@ class Actors(Base):
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
         return response
-
-
 
     def emissions(self, actor_id=str, ignore_warnings: bool = False, *args, **kwargs):
         """Retrieve actor population

@@ -1,30 +1,27 @@
-from pydantic.dataclasses import dataclass
-from pydantic import HttpUrl
-
-from .Base import Base
-
-import pandas as pd
 import requests
-from typing import List, Union, Tuple, Optional
-import warnings
-import httpx
+from pydantic.dataclasses import dataclass
+
+from .base import Base
 
 
 @dataclass
-class Sector(Base):
-    """retrieve sectors
+class Datasource(Base):
+    """retrieve emissions
 
     Returns:
         object
     """
 
-    def sector(self, *args, **kwargs):
-        """retrieve sectors
+    def datasource(self, datasource_id=None, *args, **kwargs):
+        """retrieve actor emissions
+
+        Args:
+            datasource_id (str): code for datasource
 
         Returns:
-            DataFrame: 
+            DataFrame:
         """
-        endpoint = f"/sector/"
+        endpoint = "/datasource/"
         url = f"{self.server}{endpoint}"
         headers = {
             "Accept": "application/json",
@@ -33,9 +30,8 @@ class Sector(Base):
 
         # Add query parameters
         params = {}
-        #if datasource_id:
-        #    params["datasource_id"] = datasource_id
-            
+        if datasource_id:
+            params["datasource_id"] = datasource_id
 
         response = requests.get(url, headers=headers, params=params).json()
         return response

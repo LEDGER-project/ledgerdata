@@ -1,13 +1,7 @@
-from pydantic.dataclasses import dataclass
-from pydantic import HttpUrl
-
-from .Base import Base
-
-import pandas as pd
 import requests
-from typing import List, Union, Tuple, Optional
-import warnings
-import httpx
+from pydantic.dataclasses import dataclass
+
+from .base import Base
 
 
 @dataclass
@@ -28,18 +22,17 @@ class GWP(Base):
         Returns:
             DataFrame: data for each emissions dataset
         """
-        endpoint = f"/gwp/"
+        endpoint = "/gwp/"
         url = f"{self.server}{endpoint}"
         headers = {
             "Accept": "application/json",
             "User-Agent": "python-httpx/1.0",
         }
 
-            # Add query parameters
+        # Add query parameters
         params = {}
         if assessment_report:
             params["assessment_report"] = assessment_report
-            
 
         response = requests.get(url, headers=headers, params=params).json()
         return response

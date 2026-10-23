@@ -1,24 +1,22 @@
-from pydantic.dataclasses import dataclass
-from pydantic import HttpUrl
-
-from .Base import Base
-
-import pandas as pd
-import requests
-from typing import List, Union, Tuple, Optional
 import warnings
+
+import requests
+from pydantic.dataclasses import dataclass
+
+from .base import Base
 
 
 @dataclass
-class Targets(Base):
-    """retrieve emission targets
+class Population(Base):
+    """ActorOveriew API class
+    get overview information of an actor
 
     Returns:
         object
     """
 
-    def targets(self, actor_id: str, ignore_warnings: bool = False, *args, **kwargs):
-        """retreive actor emissions
+    def population(self, actor_id: str, ignore_warnings: bool = False, *args, **kwargs):
+        """retrieve population data
 
         Args:
             actor_id (str): code for actor your want to retrieve
@@ -32,7 +30,7 @@ class Targets(Base):
             if ignore_warnings
             else warnings.simplefilter("default")
         )
-        endpoint = f"/targets/{actor_id}"
+        endpoint = f"/population/{actor_id}"
         url = f"{self.server}{endpoint}"
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()

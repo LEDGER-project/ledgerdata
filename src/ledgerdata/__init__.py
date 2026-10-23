@@ -2,13 +2,13 @@
 Set up module access for the base package
 """
 
-from .Client import Client
-from .Actors import Actors
-from .Emissions import Emissions
-from .Population import Population
-from .Targets import Targets
-from .GDP import GDP
-from .Datasource import Datasource
-from .Sector import Sector
+from .actors import Actors
+from .client import Client
+from .datasource import Datasource
+from .emissions import Emissions
+from .gdp import GDP
+from .population import Population
+from .sector import Sector
+from .targets import Targets
 
-__all__ = ["Client", "Actors", "Emissions", "Population", "Targets", "GDP", "Datasource", "Sector"]
+__all__ = ["GDP", "Actors", "Client", "Datasource", "Emissions", "Population", "Sector", "Targets"]

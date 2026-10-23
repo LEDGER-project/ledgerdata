@@ -1,13 +1,10 @@
-from pydantic.dataclasses import dataclass
-from pydantic import HttpUrl
-
-from .Base import Base
-
-import pandas as pd
-import requests
-from typing import List, Union, Tuple, Optional
 import warnings
+
 import httpx
+import requests
+from pydantic.dataclasses import dataclass
+
+from .base import Base
 
 
 @dataclass
