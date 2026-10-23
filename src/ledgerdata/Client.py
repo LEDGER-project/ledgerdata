@@ -11,6 +11,8 @@ from .Population import Population
 from .Targets import Targets
 from .GDP import GDP
 from .GWP import GWP
+from .Datasource import Datasource
+from .Sector import Sector
 
 @dataclass
 class Client(Base):
@@ -67,7 +69,32 @@ class Client(Base):
             DataFrame: data for GWPs
         """
         return pd.DataFrame(GWP().gwp(assessment_report=assessment_report))
-    
+
+    def datasource(
+        self,
+        datasource_id=None,
+    ) -> pd.DataFrame:
+        """retrieve data sources
+
+        Args:
+            datasource_id (str|List[str]): code for datasource
+
+        Returns:
+            DataFrame: data for datasources
+        """
+        return pd.DataFrame(Datasource().datasource(datasource_id=datasource_id))
+
+    def sector(
+        self
+    ) -> pd.DataFrame:
+        """retrieve sectors
+
+        Returns:
+            DataFrame: data for sectors
+        """
+        return pd.DataFrame(Sector().sector())
+
+
     def emissions(
         self,
         actor_id: str,
