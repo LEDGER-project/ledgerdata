@@ -5,11 +5,11 @@ from typing import List
 
 import asyncio
 from .Base import Base
-from .Emissions import Emissions
+#from .Emissions import Emissions
 from .Actors import Actors
-from .Population import Population
-from .Targets import Targets
-from .GDP import GDP
+#from .Population import Population
+#from .Targets import Targets
+#from .GDP import GDP
 from .GWP import GWP
 from .Datasource import Datasource
 from .Sector import Sector
@@ -107,7 +107,7 @@ class Client(Base):
         Returns:
             DataFrame: data for each emissions dataset
         """
-        return pd.DataFrame(Emissions(env=self.env, version=self.version).emissions(actor_id=actor_id))
+        return pd.DataFrame(Actors(env=self.env, version=self.version).emissions(actor_id=actor_id))
 
     def emissions_raw(
         self,
@@ -121,7 +121,7 @@ class Client(Base):
         Returns:
             DataFrame: data for each emissions dataset
         """
-        return Emissions(env=self.env, version=self.version).emissions(actor_id=actor_id)
+        return Actors(env=self.env, version=self.version).emissions(actor_id=actor_id)
 
     def targets(self, actor_id: str) -> pd.DataFrame:
         """retreive actor targets
@@ -132,7 +132,7 @@ class Client(Base):
         Returns:
             DataFrame: dataframe of targets
         """
-        return pd.DataFrame(Targets(env=self.env, version=self.version).targets(actor_id=actor_id))
+        return pd.DataFrame(Actors(env=self.env, version=self.version).targets(actor_id=actor_id))
 
     def population(self, actor_id: str) -> pd.DataFrame:
         """retreive actor population
@@ -144,7 +144,7 @@ class Client(Base):
         Returns:
             DataFrame: dataframe of population
         """
-        return pd.DataFrame(Population(env=self.env, version=self.version).population(actor_id=actor_id))
+        return pd.DataFrame(Actors(env=self.env, version=self.version).population(actor_id=actor_id))
 
     def gdp(self, actor_id: str) -> pd.DataFrame:
         """retreive actor gdp
@@ -156,10 +156,10 @@ class Client(Base):
         Returns:
             DataFrame: dataframe of gdp
         """
-        return pd.DataFrame(GDP(env=self.env, version=self.version).fetch(actor_id=actor_id))
+        return pd.DataFrame(Actors(env=self.env, version=self.version).gdp(actor_id=actor_id))
 
     async def emissions_async(self, actor_id: str) -> pd.DataFrame:
-        data = await Emissions(env=self.env, version=self.version).emissions_async(actor_id=actor_id)
+        data = await Actors(env=self.env, version=self.version).emissions_async(actor_id=actor_id)
         return pd.DataFrame(data)
 
     async def _emissions_with_sem(self, actor_id: str) -> pd.DataFrame:

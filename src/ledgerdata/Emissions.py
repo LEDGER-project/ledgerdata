@@ -33,7 +33,7 @@ class Emissions(Base):
             if ignore_warnings
             else warnings.simplefilter("default")
         )
-        endpoint = f"/emissions/{actor_id}"
+        endpoint = f"/actor/{actor_id}/emissions"
         url = f"{self.server}{endpoint}"
         headers = {
             "Accept": "application/json",
@@ -54,7 +54,7 @@ class Emissions(Base):
         else:
             warnings.simplefilter("default")
 
-        endpoint = f"/emissions/{actor_id}"
+        endpoint = f"/actor/{actor_id}/emissions"
         url = f"{self.server}{endpoint}"
         headers = {
             "Accept": "application/json",
