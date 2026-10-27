@@ -116,6 +116,23 @@ class Client(Base):
             Actors(env=self.env, version=self.version).emissions(actor_id=actor_id)
         )
 
+    
+    def emissions_total_sector(
+        self,
+        actor_id: str,
+    ) -> pd.DataFrame:
+        """retreive actor emissions by sector
+
+        Args:
+            actor_id (str|List[str]): code for actor your want to retrieve
+
+        Returns:
+            DataFrame: data for each emissions dataset
+        """
+        return pd.DataFrame(
+            Actors(env=self.env, version=self.version).emissions_total_sector(actor_id=actor_id)
+        )
+
     def emissions_raw(
         self,
         actor_id: str,
