@@ -7,6 +7,7 @@ from .actors import Actors
 from .base import Base
 from .datasource import Datasource
 from .gwp import GWP
+from initiatives import Initiatives
 from .sector import Sector
 
 
@@ -160,6 +161,20 @@ class Client(Base):
             Actors(env=self.env, version=self.version).targets(actor_id=actor_id)
         )
 
+
+    def initiatives(self, initiative: str) -> pd.DataFrame:
+        """retrieve initiatives
+
+        Args:
+            initiative (str|List[str]): initiative namme
+
+        Returns:
+            DataFrame: dataframe of initiatives
+        """
+        return pd.DataFrame(
+            Initiatives(env=self.env, version=self.version).initiatives(initiative=initiative)
+        )
+    
     def population(self, actor_id: str) -> pd.DataFrame:
         """retreive actor population
 

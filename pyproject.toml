@@ -1,6 +1,6 @@
 [project]
 name = "ledgerdata"
-version = "0.1.0.dev5"
+version = "0.1.0.dev6"
 description = "Python client for LEDGER database"
 readme = "README.md"
 authors = [
