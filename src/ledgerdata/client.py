@@ -7,7 +7,7 @@ from .actors import Actors
 from .base import Base
 from .datasource import Datasource
 from .gwp import GWP
-from initiatives import Initiatives
+from .initiatives import Initiatives
 from .sector import Sector
 
 
