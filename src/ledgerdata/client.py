@@ -101,6 +101,22 @@ class Client(Base):
         """
         return pd.DataFrame(Sector(env=self.env, version=self.version).sector())
 
+    def energy_consumption(
+        self,
+        actor_id: str,
+    ) -> pd.DataFrame:
+        """retreive actor energy consumption
+
+        Args:
+            actor_id (str|List[str]): code for actor your want to retrieve
+
+        Returns:
+            DataFrame: data for each energy consumption dataset
+        """
+        return pd.DataFrame(
+            Actors(env=self.env, version=self.version).energy_consumption(actor_id=actor_id)
+        )
+    
     def emissions(
         self,
         actor_id: str,
