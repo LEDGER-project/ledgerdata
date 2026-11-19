@@ -181,6 +181,31 @@ class Actors(Base):
         headers = {"Accept": "application/json"}
         response = requests.get(url, headers=headers).json()
         return response
+
+    def energy_emissions_by_source(self, actor_id=str, ignore_warnings: bool = False, *args, **kwargs):
+        """Retrieve actor population
+
+        Sends a GET request to the `/actor/{actor_id}/energy_emissions_by_source` endpoint and returns
+        the response as a JSON dictionary.
+
+        Args:
+            actor_id (str): The code for the actor whose parts you want to retrieve.
+            *args: Additional positional arguments (currently unused).
+            **kwargs: Additional keyword arguments (currently unused).
+
+        Returns:
+            dict: A JSON response containing actor-part data.
+        """
+        (
+            warnings.simplefilter("ignore")
+            if ignore_warnings
+            else warnings.simplefilter("default")
+        )
+        endpoint = f"/actor/{actor_id}/energy_emissions_by_source"
+        url = f"{self.server}{endpoint}"
+        headers = {"Accept": "application/json"}
+        response = requests.get(url, headers=headers).json()
+        return response
     
     async def emissions_async(
         self, actor_id: str, ignore_warnings: bool = False, *args, **kwargs

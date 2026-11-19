@@ -138,7 +138,7 @@ class Client(Base):
         self,
         actor_id: str,
     ) -> pd.DataFrame:
-        """retreive actor emissions by sector
+        """retrieve actor emissions by sector
 
         Args:
             actor_id (str|List[str]): code for actor your want to retrieve
@@ -148,6 +148,22 @@ class Client(Base):
         """
         return pd.DataFrame(
             Actors(env=self.env, version=self.version).emissions_total_sector(actor_id=actor_id)
+        )
+
+    def energy_emissions_by_source(
+        self,
+        actor_id: str,
+    ) -> pd.DataFrame:
+        """retreive actor energy emissions by source
+
+        Args:
+            actor_id (str|List[str]): code for actor your want to retrieve
+
+        Returns:
+            DataFrame: data for each emissions dataset
+        """
+        return pd.DataFrame(
+            Actors(env=self.env, version=self.version).energy_emissions_by_source(actor_id=actor_id)
         )
 
     def emissions_raw(

@@ -220,7 +220,7 @@ wheels = [
 
 [[package]]
 name = "ledgerdata"
-version = "0.1.0.dev5"
+version = "0.1.0.dev8"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
